@@ -1,0 +1,19 @@
+name: Run Linter
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install cppcheck
+        run: sudo apt-get install -y cppcheck
+
+      - name: Run cppcheck
+        run: cppcheck --error-exitcode=1 --enable=all --inconclusive --std=c99 ./
