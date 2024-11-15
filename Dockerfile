@@ -1,14 +1,11 @@
-FROM gcc:latest
+FROM gcc AS builder
 
-RUN apt-get update && apt-get install -y libcunit1 libcunit1-dev
+WORKDIR /src
+COPY *.c .
 
-WORKDIR /usr/src/app
-COPY . .
+RUN gcc main.c -o calc
 
-RUN gcc -o calc main.c
-RUN gcc -o test test.c -lcunit
-RUN ./test
+FROM ubuntu:latest
+COPY --from=builder src/calc /usr/bin/calc
 
-CMD ["./calc"]
-
-
+ENTRYPOINT ["calc"]
