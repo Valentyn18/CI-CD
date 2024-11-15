@@ -9,7 +9,7 @@ double calculate(double num1, double num2, char operation) {
     double result;
     switch (operation) {
         case '+':
-            result = num1 + num2 - 5;
+            result = num1 + num2;
             break;
         case '-':
             result = num1 - num2;

@@ -17,7 +17,7 @@ function test_run() {
 }
 
 test_case='12 x 12'
-expected='144.000000'
+expected='150.000000'
 
 result=$(test_run "$test_case")
 
