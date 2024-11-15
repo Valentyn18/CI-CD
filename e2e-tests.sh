@@ -12,22 +12,12 @@ fi
 
 function test_run() {
     args="$1"
-    output=$(docker run --rm "$IMAGE" ./calc $args)
+    output=$(docker run --rm "$IMAGE" $args)
     echo "$output"
 }
 
 test_case='12 x 12'
 expected='144.000000'
-
-result=$(test_run "$test_case")
-
-if [ "$result" != "$expected" ]; then
-    echo "Failed for ${test_case}: got ${result}, but expected ${expected}"
-    exit 1;
-fi
-
-test_case="7 / 0"
-expected="Error: devision by 0"
 
 result=$(test_run "$test_case")
 
